@@ -15,8 +15,8 @@ class Nuke(discord.ext.commands.Cog):
     def __init__(self, bot: Any) -> None:
         self.bot = bot
 
-    @discord.ext.commands.command(aliases=["nuke"])
     @discord.ext.commands.has_permissions(kick_members=True)
+    @discord.ext.commands.command(aliases=["boom"])
     async def nuke(self, ctx: Any) -> None:
         """
         Command to nuke an entire server
