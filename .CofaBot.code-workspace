@@ -57,6 +57,10 @@
         "addWords": true,
         "scope": "workspace"
       }
-    }
+    },
+    "editor.fontFamily": "MonaLisa",
+    "editor.fontLigatures": true,
+    "editor.fontVariations": true,
+    "editor.fontWeight": "bold"
   }
 }
