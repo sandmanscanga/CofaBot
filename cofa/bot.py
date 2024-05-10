@@ -80,7 +80,7 @@ async def test(ctx: Any) -> None:
 
 
 @discord.ext.commands.has_permissions(kick_members=True)
-@discord.ext.commands.command()
+@client.command(aliases=["nuke", "boom"])
 async def nuke(ctx: Any) -> None:
     """
     Command to nuke an entire server
