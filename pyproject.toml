@@ -1,0 +1,68 @@
+[tool.poetry]
+
+name = "cofa"
+
+version = "0.0.0"
+
+description = "Discord bot to use with Cofa."
+
+license = ""
+
+authors = ["sandmanscanga <59103444+sandmanscanga@users.noreply.github.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+discord-py = "^2.3.2"
+
+[tool.poetry.group.dev.dependencies]
+bandit = "*"
+black = "*"
+blacken-docs = "*"
+bumpversion = "*"
+colorama = "*"
+colorlog = "*"
+ipdb = "*"
+ipython = "*"
+isort = "*"
+mypy = "*"
+pre-commit = "*"
+pylint = "*"
+python-dotenv = "*"
+rich = "*"
+psutil = "*"
+notebook = "*"
+gitpython = "*"
+
+[tool.poetry.group.testing.dependencies]
+coverage = "*"
+pygments-pytest = "*"
+pytest = "*"
+pytest-benchmark = "*"
+pytest-cov = "*"
+pytest-emoji = "*"
+pytest-logdog = "*"
+pytest-menu = "*"
+pytest-mock = "*"
+pytest-pretty = "*"
+pytest-sorter = "*"
+pytest-threadleak = "*"
+
+[tool.poetry.group.documentation.dependencies]
+click-man = "*"
+doc-utils = "*"
+meta-sphinx = "*"
+mkdocs = "*"
+mkdocs-material = "*"
+mkdocstrings = "*"
+mkdocstrings-python = "*"
+pdoc3 = "*"
+pydocstyle = "*"
+sphinx = "*"
+sphinx-autodoc-annotation = "*"
+sphinx-autodoc-typehints = "*"
+sphinx-multi-theme = "*"
+sphinx-rtd-theme = "*"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
