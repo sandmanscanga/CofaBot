@@ -1,4 +1,7 @@
 """Module for the Mod cog"""
+
+from typing import Any
+
 import discord
 from discord.ext import commands
 
@@ -6,11 +9,11 @@ from discord.ext import commands
 class Mod(commands.Cog):
     """Class defining the Mod cog"""
 
-    def __init__(self, bot):
+    def __init__(self, bot: Any) -> None:
         self.bot = bot
 
     @commands.command()
-    async def modtest(self, ctx):
+    async def modtest(self, ctx: Any) -> None:
         """Command for testing Mod cog"""
 
         await ctx.send("Cog Mod is working!")
@@ -41,40 +44,52 @@ class Mod(commands.Cog):
 
     @commands.command(aliases=["b"])
     @commands.has_permissions(ban_members=True)
-    async def ban(self, ctx, member: discord.Member, reason=None):
+    async def ban(
+        self, ctx: Any, member: discord.Member, reason: Any | None = None
+    ) -> None:
         """Ban a member from the server"""
 
-        moderator = ctx.author
+        # moderator = ctx.author
         guild = ctx.guild
 
         await member.ban(reason=reason)
-        await ctx.send(f"**[!]** You have been banned from {guild.name} with reason {reason}")
+        await ctx.send(
+            f"**[!]** You have been banned from {guild.name}"
+            f" with reason {reason}"
+        )
 
     @ban.error
-    async def on_ban_error(self, ctx, error):
+    async def on_ban_error(self, ctx: Any, error: Any) -> None:
         """Handles errors on a ban command"""
 
         if isinstance(error, commands.CheckFailure):
-            await ctx.send("**[-]** You do not have permission to ban this member.")
+            await ctx.send(
+                "**[-]** You do not have permission to ban this member."
+            )
         elif isinstance(error, commands.CommandInvokeError):
-            await ctx.send("**[-]** I do not have permission to ban this member.")
+            await ctx.send(
+                "**[-]** I do not have permission to ban this member."
+            )
         elif isinstance(error, commands.BadArgument):
             await ctx.send("**[-]** I cannot find this member to ban.")
         else:
-            raise Exception
+            raise RuntimeError("[!] Error: Unhandled error in on_ban_error")
 
     @commands.command()
-    async def unban(self, ctx, *, member):
+    async def unban(self, ctx: Any, *, member: Any) -> None:
         """Command used to unban a previously banned member"""
 
         reason = f"Unbanned by {ctx.author}"
         banned_users = ctx.guild.bans()
         member_name, member_descriminator = member.split("#")
-        author = ctx.author
+        # author = ctx.author
 
         for bans in banned_users:
             user = bans.user
-            if (user.name, user.descriminator) == (member_name, member_descriminator):
+            if (user.name, user.descriminator) == (
+                member_name,
+                member_descriminator,
+            ):
                 await ctx.guild.unban(user, reason=reason)
                 await ctx.send(f"**[!]** {ctx.author} unbanned {member_name}")
                 break
@@ -82,7 +97,7 @@ class Mod(commands.Cog):
             ctx.send(f"**[-]** {member_name} is not banned...")
 
 
-def setup(bot):
+def setup(bot: Any) -> None:
     """Adds the cog to the bot"""
 
     bot.add_cog(Mod(bot))
